@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#173f35">
+<title>Hereditas Learning — Biologi XII</title>
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--ink:#20332d;--muted:#718078;--line:#e1e9e4;--green:#246b56;--green2:#dff1e8;--dark:#173f35;--shadow:0 8px 28px #173f3510}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1050px;margin:auto;padding:22px}
+.hero{background:linear-gradient(125deg,#153d35,#28745b);color:white;border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.eyebrow{font-size:11px;letter-spacing:2px;opacity:.8}.hero h1{font-size:clamp(27px,5vw,42px);line-height:1.05;margin:12px 0 8px}.hero p{margin:0;opacity:.82;font-size:14px}.dna{font-size:55px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:23px}.stat{background:#ffffff18;border:1px solid #ffffff20;border-radius:13px;padding:12px;text-align:center}.stat strong{display:block;font-size:22px}.stat span{font-size:11px;opacity:.8}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 0 12px;position:sticky;top:0;background:var(--bg);z-index:5}.nav button{border:1px solid var(--line);background:var(--card);padding:9px 15px;border-radius:11px;white-space:nowrap;color:var(--ink);font-size:13px}.nav button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.page{display:none}.page.active{display:block}.heading{margin:10px 0 16px}.heading h2{font-size:23px;margin:0}.heading p{margin:3px 0;color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:13px;box-shadow:var(--shadow)}
+.progress-head{display:flex;justify-content:space-between;font-size:13px;font-weight:650}.bar{height:8px;background:#e8efeb;border-radius:99px;overflow:hidden;margin-top:10px}.bar>div{height:100%;background:#29956e;border-radius:99px;transition:width .2s}
+.topic-list{display:grid;gap:10px}.topic{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;color:var(--ink);display:flex;justify-content:space-between;gap:12px;align-items:center}.topic:hover{border-color:#8ab8a4}.topic b{font-size:14px}.topic small{display:block;color:var(--muted);margin-top:4px}.pill{font-size:11px;color:var(--green);background:var(--green2);padding:5px 9px;border-radius:30px;white-space:nowrap}
+input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);margin-bottom:13px}
+.btn{border:0;border-radius:11px;padding:11px 16px;background:var(--green);color:white;font-weight:650;font-size:13px}.btn.secondary{background:white;color:var(--ink);border:1px solid var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.detail{display:none}.detail.show{display:block}.detail h2{margin:10px 0}.content{font-size:14px;line-height:1.75}.content h3{font-size:17px;margin:19px 0 7px}.content h4{font-size:14px;margin:14px 0 5px}.content table,.data-table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}.content td,.content th,.data-table td,.data-table th{border:1px solid var(--line);padding:8px;text-align:left}.content th,.data-table th{background:#f0f5f1}.formula{background:#f0f5f1;border-radius:11px;padding:13px;text-align:center;font-weight:750;margin:10px 0;color:#205c48}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.muted{color:var(--muted)}.quiz-question{font-weight:700;font-size:17px;margin:20px 0 13px}.option{display:block;width:100%;text-align:left;padding:12px;border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;margin:8px 0;font-size:14px}.option.selected{border-color:var(--green);background:var(--green2)}.option.correct{border-color:#249568;background:#e3f5eb}.option.wrong{border-color:#cf705c;background:#fff0eb}.feedback{padding:13px;border-radius:11px;background:#f0f5f1;font-size:13px;margin-top:12px}.quiz-controls{display:flex;gap:9px;margin-top:17px}.quiz-controls button{flex:1}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px 0 10px}
+@media(max-width:620px){.wrap{padding:13px}.hero{padding:21px}.dna{font-size:42px}.grid2{grid-template-columns:1fr}.card{padding:15px}.nav{margin:0 -3px}.content table{font-size:11px}.content td,.content th{padding:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+ <div class="hero-top"><div><div class="eyebrow">BIOLOGY • GRADE XII</div><h1>HEREDITAS<br>LEARNING.</h1><p>Master the science of inheritance.</p></div><div class="dna">🧬</div></div>
+ <div class="stats">
+  <div class="stat"><strong id="statTopics">5</strong><span>Modul</span></div>
+  <div class="stat"><strong>15</strong><span>Soal latihan</span></div>
+  <div class="stat"><strong id="statBest">—</strong><span>Nilai terbaik</span></div>
+ </div>
+</header>
+<nav class="nav" aria-label="Navigasi utama">
+ <button class="active" data-page="home">⌂ Beranda</button><button data-page="materi">▤ Materi</button><button data-page="rumus">∑ Rumus</button><button data-page="quiz">✎ Latihan</button><button data-page="hasil">▥ Evaluasi</button>
+</nav>
+
+<main>
+<section class="page active" id="home">
+ <div class="heading"><h2>Selamat belajar!</h2><p>Pahami konsepnya, kuasai persilangannya, lalu uji kemampuanmu.</p></div>
+ <div class="card"><div class="progress-head"><span>Progres belajar</span><span id="progressLabel">0/5 modul</span></div><div class="bar"><div id="progressBar" style="width:0%"></div></div><p class="muted" style="font-size:12px;margin-bottom:0">Tandai modul setelah selesai dipelajari.</p></div>
+ <h3 style="font-size:15px">Peta pembelajaran</h3><div class="topic-list" id="homeTopics"></div>
+ <div class="card" style="margin-top:14px"><span class="pill">REKOMENDASI</span><h3>Mulai dari dasar genetika</h3><p class="muted" style="font-size:13px">Pelajari genotip, fenotip, hukum Mendel, dan cara membuat persilangan sebelum menghafal rasio penyimpangan semu.</p><button class="btn" onclick="showPage('materi')">Mulai belajar →</button></div>
+</section>
+
+<section class="page" id="materi">
+ <div class="heading"><h2>Modul pembelajaran</h2><p>Pilih materi untuk membuka penjelasan.</p></div>
+ <input type="search" id="searchMaterial" placeholder="Cari materi, misalnya epistasis...">
+ <div class="topic-list" id="topicList"></div>
+ <article class="card detail" id="topicDetail">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="pill" id="topicCategory"></span><button class="btn secondary" onclick="closeTopic()">Tutup ✕</button></div>
+  <h2 id="topicTitle"></h2><div class="content" id="topicBody"></div>
+  <button class="btn" style="width:100%;margin-top:15px" id="markTopic">Tandai selesai ✓</button>
+ </article>
+</section>
+
+<section class="page" id="rumus">
+ <div class="heading"><h2>Formula & quick notes</h2><p>Kumpulan rumus dan rasio penting.</p></div>
+ <div class="card"><h3>1. Jumlah macam gamet</h3><div class="formula">2ⁿ</div><p class="muted">n = jumlah pasangan heterozigot yang bersegregasi bebas.</p><p>Contoh: AaBbCc → 2³ = 8 macam gamet.</p></div>
+ <div class="card"><h3>2. Rasio persilangan</h3><table class="data-table"><tr><th>Jenis</th><th>Genotip</th><th>Fenotip</th></tr><tr><td>Monohibrid</td><td>1:2:1</td><td>3:1</td></tr><tr><td>Dihibrid</td><td>1:2:1 × 1:2:1</td><td>9:3:3:1</td></tr></table></div>
+ <div class="card"><h3>3. Jumlah kombinasi F2</h3><div class="formula">Genotip = 3ⁿ</div><div class="formula">Fenotip = 2ⁿ</div><div class="formula">Kombinasi = 4ⁿ</div><p class="muted">Berlaku pada persilangan heterozigot dengan asumsi Mendel biasa.</p></div>
+ <div class="card"><h3>4. Nilai pindah silang (NPS)</h3><div class="formula">NPS = (RK / Total keturunan) × 100%</div><p>RK = jumlah individu rekombinan. Contoh: 391/2.300 × 100% = 17%.</p></div>
+ <div class="card"><h3>5. Rasio penyimpangan semu Mendel</h3><table class="data-table"><tr><th>Rasio</th><th>Jenis</th></tr><tr><td>1:2:1</td><td>Intermediet / kodominan</td></tr><tr><td>2:1</td><td>Alel letal (individu hidup)</td></tr><tr><td>9:3:3:1</td><td>Atavisme</td></tr><tr><td>12:3:1</td><td>Epistasis dominan</td></tr><tr><td>9:3:4</td><td>Epistasis resesif / kriptomeri*</td></tr><tr><td>15:1</td><td>Gen dominan rangkap / polimeri*</td></tr><tr><td>9:6:1</td><td>Efek komulatif</td></tr><tr><td>9:7</td><td>Komplementer</td></tr></table><p class="muted" style="font-size:12px">*Rasio mengikuti model contoh dan pengelompokan fenotip dalam materi.</p></div>
+ <div class="card"><h3>6. Golongan darah ABO</h3><table class="data-table"><tr><th>Genotip</th><th>Fenotip</th></tr><tr><td>IᴬIᴬ / Iᴬi</td><td>A</td></tr><tr><td>IᴮIᴮ / Iᴮi</td><td>B</td></tr><tr><td>IᴬIᴮ</td><td>AB</td></tr><tr><td>ii</td><td>O</td></tr></table></div>
+ <div class="card"><h3>7. Seri alel kelinci</h3><div class="formula">C &gt; cᶜʰ &gt; cʰ &gt; c</div></div>
+</section>
+
+<section class="page" id="quiz">
+ <div class="heading"><h2>Uji pemahaman</h2><p>15 soal pilihan ganda • Satu jawaban benar.</p></div>
+ <div class="card">
+  <div class="progress-head"><span id="quizCounter">Soal 1 dari 15</span><span id="quizScore">Terjawab: 0</span></div><div class="bar"><div id="quizBar" style="width:0%"></div></div>
+  <div class="quiz-question" id="questionText"></div><div id="options"></div><div class="feedback" id="feedback" hidden></div>
+  <div class="quiz-controls"><button class="btn secondary" id="prevQuestion">← Sebelumnya</button><button class="btn" id="nextQuestion">Berikutnya →</button></div>
+  <button class="btn" style="width:100%;margin-top:10px" id="finishQuiz" hidden>Selesaikan latihan</button>
+ </div>
+ <button class="btn secondary" id="restartQuiz">↻ Ulangi dari awal</button>
+</section>
+
+<section class="page" id="hasil">
+ <div class="heading"><h2>Evaluasi pembelajaran</h2><p>Pantau perkembangan belajarmu.</p></div>
+ <div class="card" style="text-align:center"><div class="muted" style="font-size:12px">NILAI TERBAIK</div><div style="font-size:54px;font-weight:800;margin:10px" id="bestScore">—</div><p class="muted" style="font-size:12px" id="lastScore">Belum ada latihan selesai.</p></div>
+ <div class="grid2"><div class="card"><div class="muted" style="font-size:12px">Modul selesai</div><strong style="font-size:26px" id="doneCount">0/5</strong></div><div class="card"><div class="muted" style="font-size:12px">Latihan selesai</div><strong style="font-size:26px" id="attemptCount">0</strong></div></div>
+ <div class="card"><h3>Tips evaluasi</h3><ul class="muted" style="font-size:13px;padding-left:20px"><li>Jika salah pada persilangan, ulangi hukum Mendel dan cara menentukan gamet.</li><li>Jika tertukar rasio, pelajari tabel penyimpangan semu Mendel.</li><li>Jika salah menghitung NPS, pisahkan dahulu parental dan rekombinan.</li><li>Ulangi latihan sampai mampu menjelaskan alasan di balik jawaban.</li></ul></div>
+ <button class="btn secondary" id="resetProgress">Reset progres belajar</button>
+</section>
+</main>
+<footer>HEREDITAS LEARNING • BIOLOGI XII<br>Belajar memahami, bukan sekadar menghafal.</footer>
+</div>
+
+<script>
+const topics=[
+{title:"Dasar-dasar Hereditas",cat:"Konsep dasar",body:`<h3>Pengertian hereditas</h3><p>Hereditas adalah pewarisan sifat dari induk kepada keturunannya melalui gen.</p><h3>Istilah penting</h3><table><tr><th>Istilah</th><th>Pengertian</th></tr><tr><td>Gen</td><td>Faktor pembawa sifat dalam DNA dan kromosom.</td></tr><tr><td>Alel</td><td>Pasangan bentuk gen pada kromosom homolog.</td></tr><tr><td>Dominan</td><td>Alel yang dinotasikan huruf kapital.</td></tr><tr><td>Resesif</td><td>Alel yang dinotasikan huruf kecil.</td></tr><tr><td>Genotip</td><td>Susunan genetik individu.</td></tr><tr><td>Fenotip</td><td>Sifat yang dapat diamati.</td></tr><tr><td>Parental</td><td>Induk persilangan (P).</td></tr><tr><td>Filial</td><td>Keturunan (F).</td></tr></table><h3>Homozigot dan heterozigot</h3><ul><li>BB = homozigot dominan.</li><li>Bb = heterozigot.</li><li>bb = homozigot resesif.</li></ul><h3>Meiosis dan fertilisasi</h3><p>Meiosis memisahkan alel dalam pembentukan gamet. Fertilisasi menyatukan gamet dari kedua induk.</p>`},
+{title:"Hukum Mendel & Persilangan",cat:"Hukum genetika",body:`<h3>Gregor Johann Mendel</h3><p>Bapak Genetika yang melakukan percobaan menggunakan kacang kapri (Pisum sativum). Tanaman ini memiliki varietas kontras, mudah dikawinsilangkan, melakukan penyerbukan sendiri, dan menghasilkan banyak biji.</p><h3>Hukum Mendel I — Segregasi</h3><p>Pasangan alel memisah saat pembentukan gamet. Contoh Bb menghasilkan gamet B atau b.</p><h4>Monohibrid</h4><p>KK × kk → F1 seluruhnya Kk. F1 × F1 menghasilkan:</p><div class="formula">Genotip 1 KK : 2 Kk : 1 kk</div><div class="formula">Fenotip 3 dominan : 1 resesif</div><h3>Hukum Mendel II — Asortasi bebas</h3><p>Pasangan gen berbeda dapat berkombinasi secara bebas ketika pembentukan gamet, jika tidak mengalami tautan.</p><h4>Dihibrid</h4><p>BBKK × bbkk → F1 BbKk. Gamet F1: BK, Bk, bK, bk.</p><div class="formula">F2 = 9 : 3 : 3 : 1</div><h3>Pengujian persilangan</h3><ul><li><b>Testcross:</b> individu dominan yang belum diketahui genotipnya disilangkan dengan homozigot resesif.</li><li><b>Backcross:</b> F1 disilangkan kembali dengan salah satu induknya.</li><li><b>Resiprok:</b> posisi induk jantan dan betina ditukar untuk membandingkan hasil.</li></ul><h3>Jumlah gamet</h3><div class="formula">2ⁿ</div><p>n adalah jumlah pasangan heterozigot yang bersegregasi bebas. Contoh AaBbCc memiliki 8 macam gamet.</p><h3>Menentukan genotip induk</h3><p>Perhatikan keturunan homozigot resesif. Untuk menghasilkan tt, masing-masing induk harus menyumbangkan alel t.</p>`},
+{title:"Interaksi Antaralel",cat:"Penyimpangan semu",body:`<h3>1. Kodominan</h3><p>Kedua alel diekspresikan bersama. Contoh sapi Shorthorn: rambut merah dan putih tampak bersama pada fenotip roan.</p><div class="formula">1 : 2 : 1</div><h3>2. Dominansi tidak sempurna (intermediet)</h3><p>Alel dominan tidak menutupi alel lain secara sempurna. Merah × putih menghasilkan merah muda.</p><div class="formula">RR : Rr : rr = 1 : 2 : 1</div><h3>3. Alel ganda</h3><p>Satu gen memiliki lebih dari dua bentuk alel dalam populasi. Contoh golongan darah ABO.</p><table><tr><th>Genotip</th><th>Golongan</th></tr><tr><td>IᴬIᴬ atau Iᴬi</td><td>A</td></tr><tr><td>IᴮIᴮ atau Iᴮi</td><td>B</td></tr><tr><td>IᴬIᴮ</td><td>AB</td></tr><tr><td>ii</td><td>O</td></tr></table><p>Iᴬ dan Iᴮ kodominan, keduanya dominan terhadap i.</p><h3>4. Alel letal</h3><p>Alel yang menyebabkan kematian pada individu dengan genotip tertentu. Contoh ayam Creeper: Cc × Cc menghasilkan CC letal, Cc Creeper, cc normal.</p><div class="formula">Individu hidup = 2 Creeper : 1 normal</div>`},
+{title:"Interaksi Genetik",cat:"Penyimpangan semu",body:`<h3>1. Atavisme</h3><p>Interaksi gen menghasilkan variasi sifat baru. Contoh jengger ayam:</p><table><tr><th>Genotip</th><th>Jengger</th></tr><tr><td>R•P•</td><td>Walnut</td></tr><tr><td>R•pp</td><td>Rose</td></tr><tr><td>rrP•</td><td>Pea</td></tr><tr><td>rrpp</td><td>Single</td></tr></table><div class="formula">9 : 3 : 3 : 1</div><h3>2. Epistasis dan hipostasis</h3><p>Epistasis adalah gen yang menutupi ekspresi gen lain. Hipostasis adalah gen yang tertutupi.</p><ul><li>Epistasis dominan: 12:3:1. Contoh warna labu.</li><li>Epistasis resesif: 9:3:4. Contoh warna rambut tikus.</li></ul><h3>3. Gen dominan rangkap</h3><p>Dua gen dominan berbeda dapat menghasilkan fenotip yang sama.</p><div class="formula">15 : 1</div><h3>4. Efek komulatif</h3><p>Dua gen dominan memberi pengaruh tambahan terhadap suatu sifat.</p><div class="formula">9 : 6 : 1</div><h3>5. Polimeri</h3><p>Dua gen atau lebih memengaruhi sifat yang sama. Semakin banyak alel dominan, semakin kuat ekspresinya. Contoh warna biji gandum dalam materi.</p><h3>6. Kriptomeri</h3><p>Ekspresi gen dominan tersembunyi dan baru tampak jika ada gen dominan lain. Contoh warna bunga Linaria maroccana.</p><div class="formula">Rasio contoh: 9 : 3 : 4</div><h3>7. Komplementer</h3><p>Dua gen dominan saling melengkapi. Contoh bunga Lathyrus odoratus: C•P• menghasilkan ungu, genotip lainnya putih.</p><div class="formula">9 ungu : 7 putih</div>`},
+{title:"Tautan, Pindah Silang & Seks",cat:"Pewarisan kromosom",body:`<h3>1. Tautan (linkage)</h3><p>Gen-gen berada pada kromosom yang sama sehingga cenderung diwariskan bersama. Tautan dapat terjadi pada autosom atau kromosom seks. Percobaan klasik dikaitkan dengan Thomas Hunt Morgan dan lalat buah Drosophila melanogaster.</p><p>Pada tautan, parental biasanya lebih banyak daripada rekombinan.</p><h3>2. Pindah silang (crossing over)</h3><p>Pertukaran segmen antara kromatid nonsister kromosom homolog. Terjadi pada profase I meiosis di daerah kiasma.</p><div class="formula">NPS = (RK / Total keturunan) × 100%</div><p>Contoh: RK 391 dari total 2.300 keturunan menghasilkan NPS 17%.</p><h3>3. Gagal berpisah (nondisjunction)</h3><p>Kegagalan kromosom atau kromatid berpisah ketika meiosis I atau II. Dapat menyebabkan kelebihan atau kekurangan kromosom.</p><table><tr><th>Kelainan</th><th>Kariotipe</th></tr><tr><td>Down</td><td>47, XX/XY, +21</td></tr><tr><td>Klinefelter</td><td>47, XXY</td></tr><tr><td>Jacobs</td><td>47, XYY</td></tr><tr><td>X tripel</td><td>47, XXX</td></tr><tr><td>Turner</td><td>45, X</td></tr></table><h3>4. Determinasi seks</h3><p>Penentuan jenis kelamin berdasarkan sistem kromosom seks atau mekanisme genetik lainnya.</p><table><tr><th>Sistem</th><th>Homogametik</th><th>Heterogametik</th></tr><tr><td>XY</td><td>XX (betina)</td><td>XY (jantan)</td></tr><tr><td>ZW</td><td>ZZ (jantan)</td><td>ZW (betina)</td></tr><tr><td>XO</td><td>XX (betina)</td><td>XO (jantan)</td></tr><tr><td>Haplodiploid</td><td>Betina diploid</td><td>Jantan haploid</td></tr></table><p>Homogametik menghasilkan satu jenis gonosom dalam gamet; heterogametik menghasilkan dua jenis.</p><p>Beberapa tumbuhan juga mempunyai mekanisme determinasi seks, misalnya salak dan Melandrium rubrum dalam materi.</p>`}
+];
+const questions=[
+["Faktor pembawa sifat dalam DNA dan kromosom disebut ...",["Alel","Gen","Fenotip","Karakter","Filial"],1,"Gen merupakan faktor pembawa sifat yang tersimpan dalam DNA dan kromosom."],
+["Persilangan BB dengan bb menghasilkan F1 ...",["BB seluruhnya","Bb seluruhnya","bb seluruhnya","BB : Bb = 1:1","Bb : bb = 1:1"],1,"Induk BB menghasilkan gamet B, sedangkan bb menghasilkan b. Semua keturunan Bb."],
+["Persilangan Bb × Bb menghasilkan rasio fenotip ...",["1:1","1:2:1","2:1","3:1","9:3:3:1"],3,"Genotipnya 1 BB : 2 Bb : 1 bb. Fenotipnya 3 dominan : 1 resesif."],
+["Jumlah macam gamet individu AaBbCc adalah ...",["2","4","6","8","16"],3,"2³ = 8 macam gamet."],
+["Persilangan BbKk × BbKk menghasilkan rasio fenotip ...",["1:2:1","3:1","9:3:3:1","9:7","12:3:1"],2,"Persilangan dihibrid heterozigot menghasilkan rasio 9:3:3:1."],
+["Persilangan individu dominan dengan homozigot resesif disebut ...",["Backcross","Testcross","Resiprok","Dihibrid","Intermediet"],1,"Testcross menguji genotip individu dengan fenotip dominan."],
+["Bunga merah × putih menghasilkan F1 merah muda. Pola ini disebut ...",["Kodominan","Alel ganda","Intermediet","Epistasis","Polimeri"],2,"Dominansi tidak sempurna menghasilkan fenotip peralihan."],
+["Golongan darah AB menunjukkan pola ...",["Intermediet","Kodominan","Epistasis dominan","Polimeri","Kriptomeri"],1,"Alel IA dan IB diekspresikan bersama."],
+["Ayam Creeper Cc × Cc menghasilkan CC letal. Rasio individu hidup ...",["1:1","1:2:1","2:1","3:1","9:3:3:1"],2,"CC letal. Individu hidup terdiri atas Cc dan cc dengan rasio 2:1."],
+["Persilangan ayam berjengger RrPp × RrPp menghasilkan rasio ...",["9:3:3:1","9:3:4","12:3:1","9:6:1","15:1"],0,"Atavisme jengger ayam menghasilkan empat kelompok 9:3:3:1."],
+["Gen yang menutupi ekspresi gen lain disebut ...",["Hipostasis","Epistasis","Alel","Gamet","Filial"],1,"Epistasis adalah gen penutup, hipostasis adalah gen yang tertutupi."],
+["Interaksi gen yang saling melengkapi pada Lathyrus odoratus disebut ...",["Atavisme","Kriptomeri","Komplementer","Polimeri","Epistasis"],2,"Kedua gen dominan harus hadir agar bunga ungu terbentuk."],
+["Pindah silang terjadi pada fase ...",["Profase I","Metafase II","Anafase II","Telofase I","Interfase"],0,"Pindah silang terjadi pada profase I meiosis."],
+["391 rekombinan dari 2.300 keturunan. NPS adalah ...",["8%","15%","17%","20%","83%"],2,"391/2.300 × 100% = 17%."],
+["Gagal berpisahnya kromosom ketika meiosis disebut ...",["Crossing over","Linkage","Nondisjunction","Fertilisasi","Segregasi"],2,"Nondisjunction adalah kegagalan kromosom berpisah saat meiosis."]
+];
+
+let completed=new Set(JSON.parse(localStorage.getItem("heredCompleted")||"[]"));
+let current=0,answers={},locked={};
+let best=Number(localStorage.getItem("heredBest")||0),attempts=Number(localStorage.getItem("heredAttempts")||0),last=Number(localStorage.getItem("heredLast")||0);
+const $=id=>document.getElementById(id);
+function showPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===""+name));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));if(name==="hasil")refreshStats();window.scrollTo({top:0,behavior:"smooth"});}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function refreshStats(){
+ $("statBest").textContent=best?best+"%":"—";$("bestScore").textContent=best?best+"/100":"—";$("lastScore").textContent=attempts?`Nilai terakhir: ${last}/100`:"Belum ada latihan selesai.";
+ $("doneCount").textContent=completed.size+"/5";$("attemptCount").textContent=attempts;$("progressLabel").textContent=completed.size+"/5 modul";$("progressBar").style.width=(completed.size/5*100)+"%";
+}
+function topicButton(t,i){return `<button class="topic" data-topic="${i}"><span><b>${i+1}. ${t.title}</b><small>${t.cat}</small></span><span class="pill">${completed.has(i)?"✓ Selesai":"Pelajari"}</span></button>`;}
+function renderTopics(){
+ $("homeTopics").innerHTML=topics.map(topicButton).join("");$("topicList").innerHTML=topics.map(topicButton).join("");
+ document.querySelectorAll("[data-topic]").forEach(b=>b.addEventListener("click",()=>showTopic(Number(b.dataset.topic))));
+ refreshStats();
+}
+function showTopic(i){
+ const t=topics[i];$("topicDetail").classList.add("show");$("topicCategory").textContent=t.cat;$("topicTitle").textContent=t.title;$("topicBody").innerHTML=t.body;
+ $("markTopic").textContent=completed.has(i)?"Batalkan tanda selesai":"Tandai selesai ✓";
+ $("markTopic").onclick=()=>{if(completed.has(i))completed.delete(i);else completed.add(i);localStorage.setItem("heredCompleted",JSON.stringify([...completed]));renderTopics();showTopic(i);};
+ $("topicDetail").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function closeTopic(){$("topicDetail").classList.remove("show");}
+window.closeTopic=closeTopic;window.showPage=showPage;
+$("searchMaterial").addEventListener("input",e=>{
+ const s=e.target.value.toLowerCase();
+ $("topicList").innerHTML=topics.map((t,i)=>({...t,i})).filter(t=>(t.title+t.cat+t.body.replace(/<[^>]*>/g,"")).toLowerCase().includes(s)).map(t=>topicButton(t,t.i)).join("");
+ document.querySelectorAll("#topicList [data-topic]").forEach(b=>b.addEventListener("click",()=>showTopic(Number(b.dataset.topic))));
+});
+function renderQuestion(){
+ const q=questions[current];$("quizCounter").textContent=`Soal ${current+1} dari 15`;$("quizScore").textContent=`Terjawab: ${Object.keys(answers).length}`;$("quizBar").style.width=(Object.keys(answers).length/15*100)+"%";$("questionText").textContent=(current+1)+". "+q[0];
+ $("options").innerHTML=q[1].map((o,i)=>`<button class="option ${answers[current]===i?"selected":""} ${locked[current]?(i===q[2]?"correct":answers[current]===i?"wrong":""):""}" data-answer="${i}" ${locked[current]?"disabled":""}>${String.fromCharCode(65+i)}. ${o}</button>`).join("");
+ document.querySelectorAll("[data-answer]").forEach(b=>b.addEventListener("click",()=>{if(locked[current])return;answers[current]=Number(b.dataset.answer);locked[current]=true;renderQuestion();}));
+ $("feedback").hidden=!locked[current];if(locked[current])$("feedback").innerHTML=(answers[current]===q[2]?"<b>✓ Jawaban benar!</b>":"<b>Belum tepat.</b> Jawaban: "+q[1][q[2]])+"<p>"+q[3]+"</p>";
+ $("prevQuestion").disabled=current===0;$("nextQuestion").hidden=current===14;$("finishQuiz").hidden=current!==14||Object.keys(answers).length!==15;
+}
+$("prevQuestion").onclick=()=>{current=Math.max(0,current-1);renderQuestion();};
+$("nextQuestion").onclick=()=>{current=Math.min(14,current+1);renderQuestion();};
+$("finishQuiz").onclick=()=>{
+ const score=questions.filter((q,i)=>answers[i]===q[2]).length;last=Math.round(score/15*100);best=Math.max(best,last);attempts++;
+ localStorage.setItem("heredBest",best);localStorage.setItem("heredLast",last);localStorage.setItem("heredAttempts",attempts);refreshStats();showPage("hasil");
+ $("lastScore").textContent=`Nilai terakhir: ${last}/100 • Benar ${score} dari 15 soal.`;
+};
+$("restartQuiz").onclick=()=>{current=0;answers={};locked={};renderQuestion();};
+$("resetProgress").onclick=()=>{if(confirm("Reset semua progres dan nilai latihan?")){completed.clear();best=0;attempts=0;last=0;["heredCompleted","heredBest","heredLast","heredAttempts"].forEach(k=>localStorage.removeItem(k));renderTopics();refreshStats();showPage("home");}};
+renderTopics();renderQuestion();refreshStats();
+</script>
+</body>
+</html>
